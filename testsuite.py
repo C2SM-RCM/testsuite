@@ -35,31 +35,30 @@ __email__      = "cosmo-wg6@cosmo.org"
 __maintainer__ = "xavier.lapillonne@meteoswiss.ch"
 
 
-def parse_configfile(filename):
+def parse_config_file(filename):
     config = ConfigParser.RawConfigParser()
 
-    # create empty TsConfiguration object
-    TsConfig = type('TsConfiguration', (), {})()
+    # create empty conf object
+    conf = type('configuration', (), {})()
 
     # save base directory where testsuite is executed
-    TsConfig.basedir = os.getcwd()
+    conf.basedir = os.getcwd()
 
     try:
         config.read(filename)
-        TsConfig.l_files     = ast.literal_eval(config.get('ts_config','l_files'))
-        TsConfig.par_file    = config.get('ts_config','par_file')
-        TsConfig.dt_file     = config.get('ts_config','dt_file')
-        TsConfig.res_file    = config.get('ts_config','res_file')
-        TsConfig.yufile      = config.get('ts_config','yufile')
-        TsConfig.dual_params = ast.literal_eval(config.get('ts_config','dual_params'))
-        print(TsConfig.par_file)
+        conf.l_files     = ast.literal_eval(config.get('ts_config','l_files'))
+        conf.par_file    = config.get('ts_config','par_file')
+        conf.dt_file     = config.get('ts_config','dt_file')
+        conf.res_file    = config.get('ts_config','res_file')
+        conf.yufile      = config.get('ts_config','yufile')
+        conf.dual_params = ast.literal_eval(config.get('ts_config','dual_params'))
 
     except Exception as e:
         print('Error while reading config file '+filename+':')
         print(e)
         raise # this exits with full traceback
         
-    return TsConfig 
+    return conf 
 
 
 def parse_cmdline():
@@ -232,7 +231,7 @@ def main():
         print("Error: Missing configuration file testsuite_config.cfg")
         sys.exit(1)
 
-    conf = parse_configfile(configFileName)
+    conf = parse_config_file(configFileName)
     
     # parse command line arguments
     options = parse_cmdline()
