@@ -223,15 +223,15 @@ def main():
     # search for config file in current path, otherwise takes
     # default configuration file in testsuite source directory
     if os.path.isfile("./testsuite_config.cfg"):
-        configFileName = "./testsuite_config.cfg"
+        config_file = "./testsuite_config.cfg"
     elif os.path.isfile(os.path.join(os.path.dirname(__file__),"./testsuite_config.cfg")):
-        configFileName = os.path.join(os.path.dirname(__file__),"./testsuite_config.cfg")
+        config_file = os.path.join(os.path.dirname(__file__),"./testsuite_config.cfg")
     else:
         #logger not initialize at this stage, use print and exit
         print("Error: Missing configuration file testsuite_config.cfg")
         sys.exit(1)
 
-    conf = parse_config_file(configFileName)
+    conf = parse_config_file(config_file)
     
     # parse command line arguments
     options = parse_cmdline()
