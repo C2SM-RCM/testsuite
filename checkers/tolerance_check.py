@@ -20,10 +20,6 @@ import traceback
 
 # information
 __author__      = "Santiago Moreno"
-__copyright__   = "Copyright 2012-2016, COSMO Consortium"
-__license__     = "GPL"
-__version__     = "1.1"
-__date__        = "Mon Jul 11 15:44:25 CEST 2016"
 __email__       = "cosmo-wg6@cosmo.org"
 __maintainer__  = "xavier.lapillonne@meteoswiss.ch"
 
