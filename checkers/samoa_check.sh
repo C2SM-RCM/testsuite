@@ -20,7 +20,7 @@ if [ ! -d "${RUNDIR}" ] ; then
   exit 20 # FAIL
 fi
 
-checkers/samoa.sh --skull_off -cdf --equl_val_test_of -m -l checkers/samoa.list ${RUNDIR}/output/*.nc >> ${RUNDIR}/samoa.log 2>&1
+src/checkers/samoa.sh --skull_off -cdf --equl_val_test_of -m -l src/checkers/samoa.list ${RUNDIR}/output/*.nc >> ${RUNDIR}/samoa.log 2>&1
 ERROR_STATUS=$?
 if [ $ERROR_STATUS -ne 0 ]
   then
