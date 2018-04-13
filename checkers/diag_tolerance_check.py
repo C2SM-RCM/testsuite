@@ -78,7 +78,7 @@ def check():
 
     if err_count_identical == 0:
         return 0 # MATCH
-    elif error_count == 0:
+    elif err_count == 0:
         return 10 # OK
     else:
         return 20 # FAIL

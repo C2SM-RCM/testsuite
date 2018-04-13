@@ -15,7 +15,7 @@ __author__     = "Xavier Lapillonne"
 __maintainer__ = "xavier.lapillonne@meteoswiss.ch"
 
 
-def cmp_(file1,file2,colpattern,threshold,minval,verbose=1,maxcompline=-1):
+def cmp_table(file1,file2,colpattern,minval,threshold,verbose=1,maxcompline=-1):
 
     # General purpose script to compare two files containing tables
     # Only lines with given table column pattern. Column to be compared are marked with c
@@ -136,13 +136,13 @@ def matchColPattern(line,colpattern):
 if __name__ == "__main__":
 
     if len(sys.argv)==6:
-        cmp_(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
+        cmp_table(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
              sys.argv[5])
     elif len(sys.argv)==7:
-        cmp_(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
+        cmp_table(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
              sys.argv[5],sys.argv[6])
     elif len(sys.argv)==8:
-        cmp_(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
+        cmp_table(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4], \
              sys.argv[5],sys.argv[6],sys.argv[7])    
     else:
         print '''USAGE : ./comp_table file1 file2 colpattern minval threshold [verbose maxcompline]
