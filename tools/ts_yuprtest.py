@@ -143,6 +143,7 @@ class Yuprtest(object):
             yield i
 
     def getSubline(self, subSetSteps):
+        # extract subset of lines
         subData = filter(lambda r: r[1] in subSetSteps, self._data)
         for i in subData:
             yield i
@@ -299,17 +300,12 @@ class Compare(object):
         self._status = {}
         steps1 = set(self._yu1.steps)
         steps2 = set(self._yu2.steps)
-        if steps1 == steps2:
-            for x, y in izip(self._yu1.getline(), self._yu2.getline()):
-                yupr_line = self.__compare_entry(x, y)
-                self.__update_status(yupr_line)
-                self._lineno += 1
-        else:
-            commonSteps = steps1 & steps2
-            for x, y in izip(self._yu1.getSubline(commonSteps), self._yu2.getSubline(commonSteps)):
-                yupr_line = self.__compare_entry(x, y)
-                self.__update_status(yupr_line)
-                self._lineno += 1
+        commonSteps = steps1 & steps2
+        # Only compare common time steps
+        for x, y in izip(self._yu1.getSubline(commonSteps), self._yu2.getSubline(commonSteps)):
+            yupr_line = self.__compare_entry(x, y)
+            self.__update_status(yupr_line)
+            self._lineno += 1
 
         stat = max(self._status.values())
         # fix thresholds variables which were not encountered
