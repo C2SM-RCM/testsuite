@@ -177,6 +177,10 @@ def parse_cmdline():
     parser.add_option("--tolerance",dest="tolerance",type="string",action="store",default=DefaultValues.tolerance,
                help=("Select the tolerance file name [default=%s]" % DefaultValues.tolerance))
 
+    # specifies the tolerance file name for the tolerance checker
+    parser.add_option("--icon",dest="icon",action="store_true",default=DefaultValues.icon,
+               help=("Run the checker for ICON [default=%s]" % DefaultValues.icon))
+
     # parse
     try:
         (options,args)=parser.parse_args()
@@ -278,6 +282,11 @@ def main():
                     logger.important('Update namelist mode, no run')
                     mytest.prepare() # prepare test directory and update namelists
                     mytest.update_namelist() #copy back namelist in typedir
+                # Spcial setup for ICON where only check is run
+                elif options.icon:
+                    mytest.options.pert = 0
+                    logger.important('Running checks for ICON')
+                    mytest.check()
                 else:
                     if(mytest.options.tune_thresholds):
                         mytest.options.pert = 0

@@ -19,3 +19,4 @@ class DefaultValues:
     tuning_iterations = 10
     config_nl = "OUTPUT"
     namelist_ts_switch = "INPUT"
+    icon = False
