@@ -33,7 +33,7 @@ def run_checker():
     working_dir = dir_path(rundir).replace("./", "", 1) 
     logfile = os.path.join(working_dir, log_output)
 
-    if(icon):
+    if(icon == 'True'):
         patterns = [
         #   Class/Type                  Name                    RegularExpression
             OccurrenceCrashPattern(     "Cleanup pattern",      "0")

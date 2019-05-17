@@ -165,7 +165,7 @@ def write_environ(test):
     os.environ['TS_TUNING_ITERATIONS'] = str(test.options.tuning_iterations)
     os.environ['TS_TUNE_THRESHOLDS'] = str(test.options.tune_thresholds)
     os.environ['TS_RESET_THRESHOLDS'] = str(test.options.reset_thresholds)
-    os.environ['TS_ICON'] = test.options.icon
+    os.environ['TS_ICON'] = str(test.options.icon)
 
 def read_environ():
     """read environment variables and store into local map"""
