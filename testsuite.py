@@ -286,7 +286,7 @@ def main():
                 elif options.icon:
                     mytest.options.pert = 0
                     logger.important('Running checks for ICON')
-                    mytest.log_file = 'exe.log'
+                    mytest.log_file = 'final_status.txt'
                     mytest.check()
                 else:
                     if(mytest.options.tune_thresholds):

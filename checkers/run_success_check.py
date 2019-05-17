@@ -28,17 +28,25 @@ def run_checker():
     verbose = int(env['VERBOSE'])
     rundir = env['RUNDIR']
     log_output = env['LOGFILE']
+    icon = env['ICON']
     # construct stdout filename
     working_dir = dir_path(rundir).replace("./", "", 1) 
     logfile = os.path.join(working_dir, log_output)
 
-    cosmo_patterns = [
-    #   Class/Type                  Name                    RegularExpression
-        WarningPattern(             "CFL pattern",          "CFL"                       ),
-        OccurrenceCrashPattern(     "Cleanup pattern",      "(.*)^(.*)CLEAN(\s*)UP(.*)" )
-    ]
+    if(icon):
+        patterns = [
+        #   Class/Type                  Name                    RegularExpression
+            OccurrenceCrashPattern(     "Cleanup pattern",      "0")
+        ]
+    else:
+        patterns = [
+        #   Class/Type                  Name                    RegularExpression
+            WarningPattern(             "CFL pattern",          "CFL"                       ),
+            OccurrenceCrashPattern(     "Cleanup pattern",      "(.*)^(.*)CLEAN(\s*)UP(.*)" )
+        ]
+
     cosmo_filechecker = FileChecker()
-    cosmo_filechecker.add_pattern_list(cosmo_patterns)
+    cosmo_filechecker.add_pattern_list(patterns)
     return cosmo_filechecker.check(logfile, verbose)
 
 if __name__ == "__main__":
