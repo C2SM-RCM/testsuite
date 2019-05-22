@@ -43,7 +43,7 @@ varb = varbs.split()
 
 # Open text file for writing
 f = open('YUPRTEST', 'wb')
-f.write("{:>5} {:>3} {:>3} {:>28} {:>5} {:>5} {:>28} {:>5} {:>5} {:>28}\n".format("# var", "nt", "lev", "min", "imin", "jmin", "max", "imax", "jmax", "mean"))
+f.write("{:>5} {:>3} {:>3} {:>20} {:>5} {:>5} {:>20} {:>5} {:>5} {:>20}\n".format("# var", "nt", "lev", "min", "imin", "jmin", "max", "imax", "jmax", "mean"))
 
 # Print values to text file
 for i in range(0,int(gnt)):
@@ -76,7 +76,7 @@ for i in range(0,int(gnt)):
            mxarray=maxarray.split()
 
            for k in range(int(nlevel)):
-               f.write("{:>5} {:>3} {:>3} {:>28} {:>5} {:>5} {:>28} {:>5} {:>5} {:>28}\n".format(varb[j], i, k, mnnarray[k], 1, 1, mxarray[k], 1, 1, mnarray[k]))
+               f.write("{:>5} {:>3} {:>3} {:1.14E} {:>5} {:>5} {:1.14E} {:>5} {:>5} {:1.14E}\n".format(varb[j], i, k, mnnarray[k], 1, 1, mxarray[k], 1, 1, mnarray[k]))
 
 f.close()
 procrm = subprocess.Popen("rm max.nc min.nc mean.nc", stdout=subprocess.PIPE, shell=True)
