@@ -76,7 +76,7 @@ for i in range(0,int(gnt)):
            mxarray=maxarray.split()
 
            for k in range(int(nlevel)):
-               f.write("{:>5} {:>3} {:>3} {:1.14E} {:>5} {:>5} {:1.14E} {:>5} {:>5} {:1.14E}\n".format(varb[j], i, k, mnnarray[k], 1, 1, mxarray[k], 1, 1, mnarray[k]))
+               f.write("{:>5} {:>3} {:>3} {:1.14E} {:>5} {:>5}  {:1.14E} {:>5} {:>5}  {:1.14E}\n".format(varb[j], i, k, float(mnnarray[k]), 1, 1, float(mxarray[k]), 1, 1, float(mnarray[k])))
 
 f.close()
 procrm = subprocess.Popen("rm max.nc min.nc mean.nc", stdout=subprocess.PIPE, shell=True)
