@@ -20,3 +20,4 @@ class DefaultValues:
     config_nl = "OUTPUT"
     namelist_ts_switch = "INPUT"
     icon = False
+    config_file = "testsuite_config.cfg"

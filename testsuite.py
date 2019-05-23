@@ -177,10 +177,13 @@ def parse_cmdline():
     parser.add_option("--tolerance",dest="tolerance",type="string",action="store",default=DefaultValues.tolerance,
                help=("Select the tolerance file name [default=%s]" % DefaultValues.tolerance))
 
-    # specifies the tolerance file name for the tolerance checker
+    # flag to run the testsuite for icon
     parser.add_option("--icon",dest="icon",action="store_true",default=DefaultValues.icon,
-               help=("Run the checker for ICON [default=%s]" % DefaultValues.icon))
+               help=("Run the testsuite for ICON [default=%s]" % DefaultValues.icon))
 
+    # name of the config file
+    parser.add_option("--config-file",dest="config_file",action="store",default=DefaultValues.config_file,
+               help=("Name of the testsuite configuration file [default=%s]" % DefaultValues.config_file))
     # parse
     try:
         (options,args)=parser.parse_args()
@@ -227,19 +230,13 @@ def main():
     # definition of structure carrying global configuration
     # search for config file in current path, otherwise takes
     # default configuration file in testsuite source directory
-    if os.path.isfile("./testsuite_config.cfg"):
-        config_file = "./testsuite_config.cfg"
-    elif os.path.isfile(os.path.join(os.path.dirname(__file__),"./testsuite_config.cfg")):
-        config_file = os.path.join(os.path.dirname(__file__),"./testsuite_config.cfg")
-    else:
-        #logger not initialize at this stage, use print and exit
-        print("Error: Missing configuration file testsuite_config.cfg")
-        sys.exit(1)
-
-    conf = parse_config_file(config_file)
-    
     # parse command line arguments
     options = parse_cmdline()
+    if not os.path.isfile(os.path.join(os.path.dirname(__file__),options.config_file)):
+       print('Error: Missing configuration file '+options.config_file)
+       sys.exit(1)
+
+    conf = parse_config_file(os.path.join(os.path.dirname(__file__),options.config_file))
         
     # redirect standard output (if required)
     logger = setup_logger(options)
