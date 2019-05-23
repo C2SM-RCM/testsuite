@@ -232,11 +232,17 @@ def main():
     # default configuration file in testsuite source directory
     # parse command line arguments
     options = parse_cmdline()
-    if not os.path.isfile(os.path.join(os.path.dirname(__file__),options.config_file)):
-       print('Error: Missing configuration file '+options.config_file)
-       sys.exit(1)
 
-    conf = parse_config_file(os.path.join(os.path.dirname(__file__),options.config_file))
+    if os.path.isfile(options.config_file): 
+       conf = parse_config_file(options.config_file)
+    elif os.path.isfile(os.path.join(os.path.dirname(__file__),options.config_file)):
+       conf = parse_config_file(os.path.join(os.path.dirname(__file__),options.config_file))     
+    else:
+        #logger not initialize at this stage, use print and exit
+        print('Error: Missing configuration file '+options.config_file)
+        sys.exit(1)
+
+
         
     # redirect standard output (if required)
     logger = setup_logger(options)
