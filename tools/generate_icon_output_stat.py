@@ -47,9 +47,9 @@ f.write("{:>5} {:>3} {:>3} {:>20} {:>5} {:>5} {:>20} {:>5} {:>5} {:>20}\n".forma
 
 # Print values to text file
 for i in range(0,int(gnt)):
-    print "Processing timestep:{}".format(i) 
+#print "Processing timestep:{}".format(i) 
     for j in range(0,len(varb)):
-        print "Processing variable:{}".format(varb[j])
+#print "Processing variable:{}".format(varb[j])
         # Get the number of levels and number of time steps
         proctime = subprocess.Popen("cdo -s ntime -selvar,{} {}".format(varb[j], args.file), stdout=subprocess.PIPE, shell=True)
         (nt, err) = proctime.communicate()
