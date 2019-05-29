@@ -42,7 +42,7 @@ procgtime.wait()
 varb = varbs.split()  
 
 # Open text file for writing
-f = open('YUPRTEST', 'wb')
+f = open('output_stat.dat', 'wb')
 f.write("{:>5} {:>3} {:>3} {:>20} {:>5} {:>5} {:>20} {:>5} {:>5} {:>20}\n".format("# var", "nt", "lev", "min", "imin", "jmin", "max", "imax", "jmax", "mean"))
 
 # Print values to text file
